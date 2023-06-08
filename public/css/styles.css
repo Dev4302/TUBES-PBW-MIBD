@@ -315,3 +315,159 @@ html
   height: 3%;
   margin-right: -80%;
 }
+
+
+
+
+  
+.daftarMurid h1{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  width: 50%;
+  font-size: 30px;
+  text-align: justify;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+.daftarMurid img{
+  width: 75%;
+  height: 100%;
+  margin-top: 0%;
+  margin-left: 10%;
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.signupGuru{
+  width: 50%;
+  height: 100%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupGuru h1{
+  font-size: 50px;
+}
+
+button{
+  border: none;
+  background-color: #fff;
+  font-size: 20px;
+}
+
+.username{
+  display: flex;
+  margin: 0.7%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.user{
+  font-size: 20px;
+}
+
+
+.email{
+  display: flex;
+  margin: 0.7%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.mail{
+  font-size: 20px;
+}
+
+.password{
+  display: flex;
+  margin: 0.7%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.pass{
+  font-size: 20px;
+}
+
+.tingkatan{
+  display: flex;
+  margin: 0.7%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.asalSekolah{
+  display: flex;
+  margin: 1%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.lanjut{
+  display: flex;
+  margin: 1%;
+  align-items: center;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+  height: 30%;
+}
+
+.lanjut:is(:hover, :focus){
+  outline-style: solid;
+  outline-color: rgb(185, 182, 182);
+  outline-offset: 2px;
+  transition: outline-offset 0.3s ease;
+  cursor: pointer;
+}
+
+.input1 input{
+width: 300px;
+margin: 2%;
+border: none;
+}
+
+.input2 input{
+width: 300px;
+margin: 2%;
+border: none;
+}
+
+.input3 input{
+width: 300px;
+margin: 2%;
+border: none;
+}
+
+#pelajaran{
+justify-content: center;
+align-items: center;
+width: 100px;
+font-size: 18px;
+margin-left: 13%;
+}
