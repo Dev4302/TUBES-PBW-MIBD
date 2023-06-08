@@ -1,5 +1,5 @@
 # Final Project Unpar
-Ini project untal UAS
+Ini project untuk UAS
 
 # Requirement
 - CSS
