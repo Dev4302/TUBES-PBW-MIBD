@@ -1,0 +1,317 @@
+html
+{
+  width: 100%;
+  height: 100%;
+}
+
+.header 
+{
+    width: 100%;
+    height: 20%;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0px;
+}
+  
+  .navbar 
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+  
+  .logo img {
+    height: 80%;
+  }
+  
+  .links {
+    margin-left: auto;
+    display: flex;
+    gap: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    align-items: flex-end;
+    margin-right: 5%;
+    font-style: normal;
+  }
+  
+  .links a {
+    text-decoration:none;
+  }
+  
+  .main {
+    margin-top: 0px;
+    display: flex;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+  }
+  
+  .face1_kiri {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 50%;
+    font-size: 30px;
+    text-align: justify;
+    margin-left: 5%;
+  }
+  
+  .face1_kanan {
+    width: 50%;
+    height: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+  }
+
+  .AboutUs_kiri {
+    width: 50%;
+    height: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  .abtus
+  {
+    width: 70%;
+  }
+
+  .AboutUs_kanan {
+    width: 50%;
+    height: 100%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+  }
+  
+  .img1 {
+    width: 90%;
+    height: 78%;
+    border-radius: 50px;
+  }
+  
+  .kepo {
+    padding: 40px;
+    border-radius: 20px;
+    background-color: white;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  body {
+    background-image: linear-gradient(to bottom, #00C2FF, white);
+  }
+  
+  .ver
+  {
+    display: flex;
+    margin: 0.7%;
+    align-items: center;
+    width: 47%;
+    background-color: white;
+    padding: 0.8%;
+    border-radius: 20px;
+  }
+
+  .verlogo
+  {
+    width: 16%;
+  }
+
+  button
+  {
+    padding: 3%;
+    border-radius: 20%;
+    background-color: #fff;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18px;
+  }
+
+  button:is(:hover, :focus){
+    outline-style: solid;
+    outline-color: rgb(185, 182, 182);
+    outline-offset: 2px;
+    transition: outline-offset 0.3s ease;
+}
+
+
+
+.homepic {
+  position: relative;
+  height: 46%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.r-img {
+  width: 24%;
+  height: 85%;
+  display: flex;
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  z-index: 2  ;
+}
+
+.homebg-img {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.hps
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.kotak {
+  height: 8%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 4%;
+  background: white;
+  position: relative;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.kotak2
+{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  margin-right: 1%;
+}
+
+.kotak p 
+{
+  display: flex;
+  align-items: center;
+}
+
+.opt {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  height: 40%;
+  background : linear-gradient(to bottom, #FFE8AE, white);
+  border-radius: auto;
+  width: 100%;
+  gap: 3%;
+}
+
+.box
+{
+  border-radius: 20%;
+  width: 96%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  gap: 3%;
+  text-align: center;
+}
+
+.ikon
+{
+  width: 40%;
+}
+
+.bljr
+{
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  align-items: center;
+  header: 5%;
+}
+.paket
+{
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  gap: 4%;
+}
+
+.fisika
+{
+  border: 2px solid black;
+  border-radius: 10%;
+  background-color: #acf9ff;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kimia
+{
+  border: 2px solid black;
+  width: 25%;
+  border-radius: 10%;
+  background-color: #acf9ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.matematika
+{
+  border: 2px solid black;
+  width: 25%;
+  border-radius: 10%;
+  background-color: #acf9ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.daftar
+{
+  padding: 2%;
+  width: 12%;
+  margin-top: 1%;
+  font-size: 28px;
+}
+
+.home{
+  width: 3%;
+  height: 3%;
+  margin-right: -80%;
+}
