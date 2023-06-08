@@ -1,5 +1,5 @@
 # Final Project Unpar
-Ini project untal UAS
+Ini project untuk UAS
 
 # Requirement
 - CSS
@@ -23,3 +23,6 @@ Ini project untal UAS
 - `git add index.html` -> add file `index.html` saja ke commit
 - `git commit -m "pesan anda"` -> commit perubahan dengan pesan sesuai apa yang dirubah, misalnya "fix index.html"
 - `git push -u origin main` -> push commit-commit yang ada ke github `main` adalah branch nya
+
+- `git fetch` -> command untuk fetch perubahan terbaru
+- `git pull` -> command untuk membuat codebase kita menjadi yang terbaru
