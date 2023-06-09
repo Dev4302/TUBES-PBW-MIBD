@@ -30,9 +30,24 @@ app.get('/Homepage-student', async(req,res)=>
     res.render('Homepage-student');
 });
 
-app.get('/Homepage-teacher', async(req,res)=>
+app.get('/daftarMurid', async(req,res)=>
 {
-    res.render('Homepage-teacher');
+    res.render('daftarMurid');
 });
+
+app.get('/LoginMurid', async(req,res)=>
+{
+    res.render('LoginMurid');
+});
+
+app.get('/optlogin', async(req,res)=>
+{
+    res.render('optlogin');
+});
+app.get('/LoginPengajar', async(req,res)=>
+{
+    res.render('LoginPengajar');
+});
+
 
 app.use(express.static('public'));
