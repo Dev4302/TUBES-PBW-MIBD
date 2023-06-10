@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp Guru</title>
     <link rel="stylesheet" href="/css/styles.css">
+
+    <script>
+        function validateForm(event) {
+            var username = document.querySelector('.username input').value;
+            var email = document.querySelector('.email input').value;
+            var password = document.querySelector('.password input').value;
+    
+            if (username === '' || email === '' || password === '') {
+                event.preventDefault();
+                alert('Mohon isi semua field.');
+            }
+        }
+    
+        window.onload = function() {
+            var signInButton = document.querySelector('.lanjut button');
+            signInButton.addEventListener('click', validateForm);
+        };
+    </script>
 </head>
 
 <body>
@@ -20,7 +38,7 @@
     </header>
 
 
-   <div class = "main">
+   <div class = "main1">
        <div class = "daftarMurid">
            <h1>Daftar Sebagai Pengajar</h1>
            <img src="img/Group_139-removebg-preview.png" alt="Group_139-removebg-preview">

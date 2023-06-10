@@ -10,6 +10,7 @@ app.get('/' , async(req,res) =>
     res.render('Face1');
 });
 
+
 app.get('/aboutus', async(req,res)=>
 {
     res.render('AboutUs!');
@@ -44,10 +45,25 @@ app.get('/optlogin', async(req,res)=>
 {
     res.render('optlogin');
 });
+
 app.get('/LoginPengajar', async(req,res)=>
 {
     res.render('LoginPengajar');
 });
 
+app.get('/RegisterCourse', async(req,res)=>
+{
+    res.render('RegisterCourse');
+});
+
+app.get('/myCourse', async(req,res)=>
+{
+    res.render('myCourse');
+});
+
+app.get('/Homepage-teacher', async(req,res)=>
+{
+    res.render('Homepage-teacher');
+});
 
 app.use(express.static('public'));

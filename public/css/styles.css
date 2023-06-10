@@ -19,6 +19,7 @@ html
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 3%;
 }
   
   .logo img {
@@ -46,6 +47,13 @@ html
     display: flex;
     width: 100%;
     height: 80%;
+    align-items: center;
+  }
+
+  .main1 {
+    margin-top: 0px;
+    display: flex;
+    height: 600px;
     align-items: center;
   }
   
@@ -115,6 +123,7 @@ html
   
   body {
     background-image: linear-gradient(to bottom, #00C2FF, white);
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .ver
@@ -155,7 +164,7 @@ html
 
 .homepic {
   position: relative;
-  height: 46%;
+  height: 400px;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -229,7 +238,7 @@ html
   margin-top: 1%;
   height: 40%;
   background : linear-gradient(to bottom, #FFE8AE, white);
-  border-radius: auto;
+  border-radius: 2%;
   width: 100%;
   gap: 3%;
 }
@@ -287,6 +296,7 @@ html
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 30px;
 }
 
 .kimia
@@ -298,6 +308,7 @@ html
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 30px;
 }
 
 .matematika
@@ -309,6 +320,7 @@ html
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 30px;
 }
 
 .daftar
@@ -343,6 +355,7 @@ html
   width: 50%;
   height: 100%;
   margin-left: 0%;
+  margin-top: 0%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -541,4 +554,119 @@ right: 1%;
   font-size: 40px;
   font-weight: bold;
   font-style: normal;
+}
+
+
+.jadwal{
+  display: flex;
+  margin: 2%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.hari{
+  font-size: 20px;
+}
+
+
+.waktu{
+  display: flex;
+  margin: 2%;
+  align-items: center;
+  width: 47%;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+.jam{
+  font-size: 20px;
+}
+
+
+.SignIn{
+  display: flex;
+  margin: 3%;
+  align-items: center;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+  height: 30%;
+
+}
+
+.SignIn:is(:hover, :focus){
+  outline-style: solid;
+  outline-color: rgb(185, 182, 182);
+  outline-offset: 2px;
+  transition: outline-offset 0.3s ease;
+  cursor: pointer;
+}
+
+.InputJadwal{
+  display: flex;
+  margin: 3%;
+  align-items: center;
+  background-color: white;
+  padding: 1%;
+  border-radius: 20px;
+  height: 30%;
+}
+
+.InputJadwal:is(:hover, :focus){
+outline-style: solid;
+outline-color: rgb(185, 182, 182);
+outline-offset: 2px;
+transition: outline-offset 0.3s ease;
+cursor: pointer;
+}
+
+.headerregis
+{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  position: relative;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.belumdaftar
+{
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonjdwl
+{
+  margin-bottom: 2%;
+}
+
+.popup{
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap : 5%;
+  margin-top: 60px;
+  margin-left: 85px;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 10%;
+  height: 10%;
+  background : linear-gradient(to bottom, #FFE8AE, white);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 99;
 }

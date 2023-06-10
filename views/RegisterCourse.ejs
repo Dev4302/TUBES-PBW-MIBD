@@ -3,7 +3,26 @@
         <title>
             RegisterCourse
         </title>
-        <link rel="stylesheet" type="text/css" href="styleface.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <script defer>
+            window.onload = function() {
+              var buttons = document.querySelectorAll('.paket button');
+          
+              buttons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                  if (this.dataset.clicked === 'true') {
+                    this.style.backgroundColor = '';
+                    this.dataset.clicked = 'false';
+                  } else {
+                    this.style.backgroundColor = '#2C898F';
+                    this.dataset.clicked = 'true';
+                  }
+                });
+              });
+            };
+          </script>
+          
+          
     </head>
 
     <body>
@@ -21,24 +40,28 @@
             
         <div class="paket">
 
-            <div class="fisika">
+            <button class="fisika">
                 <img src="img/Fisika-removebg-preview.png" alt="Fisika-removebg-preview">
                 <p>fisika</p>
-            </div>
+            </button>
 
-            <div class="kimia">
+            <button class="kimia">
                 <img src="img/Kimia-removebg-preview.png" alt="Kimia-removebg-preview">
                 <p>Kimia</p>
-            </div>
+            </button>
 
-            <div class="Matematika">
+            <button class="Matematika">
                 <img src="img/Matematika-removebg-preview.png" alt="Matematika-removebg-preview">
                 <p>Matematika</p>
-            </div>
+            </button>
         </div>
 
-    <button type="submit" class="daftar">Daftar</button>
-        <img src="img/Home.png" alt="Home" class="home">
+    <button type="submit" class="daftar" onclick="window.location.href = 'Homepage-student';">Daftar</button>
+
+
+    <img src="img/Home.png" alt="Home" class="home" onclick="window.location.href = 'Homepage-student';">
+
+        
     
     </div>
 
