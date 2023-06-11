@@ -75,6 +75,7 @@ app.get('/aboutus', async(req,res)=>
 });
 
 
+
 app.get('/daftarPengajar', async(req,res)=>
 {
     res.render('daftarPengajar');
@@ -113,16 +114,34 @@ app.get('/daftarMurid', async(req,res)=>
 {
     res.render('daftarMurid');
 });
+const createMurid = (namasiswa, email, asalsekolah, pass, idtingkat)=>{
+    console.log(namasiswa);
+    console.log(email);
+    console.log(asalsekolah);
+    console.log(pass);
+    console.log(idtingkat);
+    return new Promise((resolve, reject) => {
+        const query = "INSERT INTO Siswa (idsiswa, namasiswa, email, asalsekolah, pass, idtingkat) VALUES (?,?, ?, ?, ?, ?)";
+        conn.query(query, [0, namasiswa, email, asalsekolah, pass, idtingkat], (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
 app.post('/daftarMurid',async (req, res)=>{
-    const data = req.body;
-    console.log(data.username);
-    console.log(data.email);
-    console.log(data.password);
-    console.log(data.jenis);
-    console.log(data.sekolah);
-   
-    
-    res.redirect('/optlogin');
+    const { username, email, password, jenis, sekolah } = req.body;
+
+    try {
+
+        await createMurid(username, email, sekolah, password, jenis);
+        
+        res.redirect('/optlogin');
+    } catch (err) {
+        console.error(err);
+    }
 });
 
 app.get('/LoginMurid', async(req,res)=>
