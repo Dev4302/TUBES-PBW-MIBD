@@ -165,7 +165,7 @@ app.get('/LoginPengajar', async(req,res)=>
 {
     res.render('LoginPengajar');
 });
-app.post('/LoginPengajar',async (req, res)=>{
+app.post('/LoginPengajar', async (req, res)=>{
 
     const data = req.body.username;
     console.log(data);

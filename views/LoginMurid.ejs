@@ -8,11 +8,10 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <script defer>
         function validateForm(event) {
-            var username = document.querySelector('.username input').value;
             var email = document.querySelector('.email input').value;
             var password = document.querySelector('.password input').value;
 
-            if (username === '' || email === '' || password === '') {
+            if (email === '' || password === '') {
                 event.preventDefault();
                 alert('Mohon isi semua field.');
             }
