@@ -8,23 +8,26 @@
     <title>SignUp Guru</title>
     <link rel="stylesheet" href="/css/styles.css">
 
-    <script>
+    <script defer>
         function validateForm(event) {
             var username = document.querySelector('.username input').value;
             var email = document.querySelector('.email input').value;
             var password = document.querySelector('.password input').value;
-
+    
             if (username === '' || email === '' || password === '') {
                 event.preventDefault();
                 alert('Mohon isi semua field.');
+            } else {
+                window.location.href = 'jadwalPengajar';
             }
         }
-
+    
         window.onload = function () {
-            var signInButton = document.querySelector('.lanjut button');
+            var signInButton = document.querySelector('.button');
             signInButton.addEventListener('click', validateForm);
         };
     </script>
+    
 </head>
 
 <body>
@@ -47,7 +50,7 @@
 
         <div class="signupGuru">
             <h1>SIGN-UP</h1>
-            <form action="">
+            <form action="daftarPengajar" method="post">
                 <div class="username">
                     <div class="user">Username :</div>
                     <div class="input1"><input type="text" name="username"></div>
@@ -55,31 +58,32 @@
 
                 <div class="email">
                     <div class="mail">Email :</div>
-                    <div class="input2"><input type="text"></div>
+                    <div class="input2"><input type="text" name="email"></div>
                 </div>
 
                 <div class="password">
                     <div class="pass">Password :</div>
-                    <div class="input3"><input type="password"></div>
+                    <div class="input3"><input type="password" name="password"></div>
                 </div>
 
                 <div class="tingkatan">
                     <p>Pilih Pelajaran : </p>
                     <div class="tingkat">
                         <select name="jenis" id="pelajaran">
-                            <option value="SMA">Fisika</option>
-                            <option value="SMP">Kimia</option>
-                            <option value="SD">Matematika</option>
+                            <option value="FISIKA">Fisika</option>
+                            <option value="KIMIA">Kimia</option>
+                            <option value="MATEMATIKA">Matematika</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="asalSekolah">
                     <div class="asal">Tentukan Tarifmu :</div>
+                    <div class="input3"> <input type="text" name="tarif" id="tarif"> </div>
                     <div class="PenaLogo"><img src="IMG/pena.png" alt=""></div>
                 </div>
 
-                <button class="button" type="button" onclick="window.location.href = 'jadwalPengajar';">Lanjut</button>
+                <button class="button" type="submit">Lanjut</button>
             </form>
 
         </div>
