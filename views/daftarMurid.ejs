@@ -7,7 +7,7 @@
     <title>SignUp Guru Jadwal</title>
     <link rel="stylesheet" href="/css/styles.css">
 
-    <script>
+    <script defer>
         function validateForm(event) {
             var username = document.querySelector('.username input').value;
             var email = document.querySelector('.email input').value;
@@ -24,8 +24,11 @@
             signInButton.addEventListener('click', validateForm);
         };
     </script>
+
+    
     
 </head>
+
 <body>
     <header class="header">
         <div class = "navbar">
@@ -44,48 +47,51 @@
  
         <div class = "signupGuru">
             <h1>SIGN-UP</h1>
+
+            <form action="daftarmurid" method="post">
+            <div class="username">
+             <label class="user" for="username">Username :</label>
+             <div class="input1"><input type="text" name="username" required></div>
+            </div>
  
-            <form action="optlogin" method="post">
-                <div class="username">
-                  <div class="user">Username :</div>
-                  <div class="input1"><input type="text" name="username" required></div>
-                </div>
-              
-                <div class="email">
-                  <div class="mail">Email :</div>
-                  <div class="input2"><input type="text" name="email" required></div>
-                </div>
-              
-                <div class="password">
-                  <div class="pass">Password :</div>
-                  <div class="input3"><input type="password" name="password" required></div>
-                </div>
-              
-                <div class="tingkatan">
-                  <p>Masukan tingkat pendidikan :</p>
-                  <div class="tingkat">
-                    <select name="tingkat_pendidikan" id="pelajaran">
-                      <option value="SMA" class="opsi">SMA</option>
-                      <option value="SMP" class="opsi">SMP</option>
-                      <option value="SD" class="opsi">SD</option>
-                    </select>
-                  </div>
-                </div>
-              
-                <div class="asalSekolah">
-                  <div class="asal">Masukan asal sekolah: </div>
-                  <div class="PenaLogo"><img src="IMG/pena.png" alt=""></div>
-                </div>
-              
-                <div class="lanjut">
-                  <button type="submit">Sign-In</button>
-                </div>
-              </form>
-              
+            <div class = "email">
+                 <div class = "mail">Email :</div>
+                 <div class = "input2"><input type="text" name="email" required></div>
+            </div>
+ 
+            <div class = "password">
+                 <div class = "pass">Password :</div>
+                 <div class = "input3"><input type="password" name="password" required></div>
+            </div>
+ 
+            <div class = "tingkatan">
+                 <p>Masukan tingkat pendidikan :</p>
+                 <div class = "tingkat">
+                     <select name="jenis" id="pelajaran">
+                         <option value="SMA" class="opsi">SMA</option>
+                         <option value="SMP" class="opsi">SMP</option>
+                         <option value="SD" class="opsi">SD</option>
+                     </select>
+                 </div>
+            </div>
+ 
+            <div class = "asalSekolah">
+                 <div class = "asal">Masukan asal sekolah: </div>
+                 <div class="input3"> <input type="text" name="sekolah" id="asalsekolah"> </div>
+                 <div class = "PenaLogo"><img src="IMG/pena.png" alt=""></div>
+            </div>
+ 
+            <div class = "lanjut">
+             <button type="submit">Sign-In</button>
+         </div>
  
         </div>
+        </form>
     </div>
 
 
 </body>
+
+<script src="/Script/Script.js" ></script>
+
 </html>

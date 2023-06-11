@@ -3,7 +3,27 @@
         <title>
             Face 1
         </title>
+        
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <script defer>
+            function validateForm(event) {
+                var username = document.querySelector('.username input').value;
+                var email = document.querySelector('.email input').value;
+                var password = document.querySelector('.password input').value;
+        
+                if (username === '' || email === '' || password === '') {
+                    event.preventDefault();
+                    alert('Mohon isi semua field.');
+                }
+            }
+        
+            window.onload = function() {
+                var signInButton = document.querySelector('.lanjut button');
+                signInButton.addEventListener('click', validateForm);
+            };
+        </script>
+    
+    
     </head>
 
     <body>
@@ -28,6 +48,7 @@
             </div>
 
             <div class="optkanan">
+                <form action="">
                 <div class="tulisanlog">Log-In</div>
                 <div class = "emailmurid">
                     <div class = "mail">Email :</div>
@@ -40,6 +61,7 @@
                </div>
 
                <button class="login" type="button" onclick="window.location.href = 'Homepage-student';">Log-in</button>
+            </form>
             </div>
                 
 

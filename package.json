@@ -2,9 +2,9 @@
   "name": "tubes-pbw",
   "version": "1.0.0",
   "description": "",
-  "main": "overlay.js",
+  "main": "/src/index.js",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "Kelompok 06",

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Guru Jadwal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script defer>
+        function validateForm(event) {
+            var username = document.querySelector('.username input').value;
+            var email = document.querySelector('.email input').value;
+            var password = document.querySelector('.password input').value;
+    
+            if (username === '' || email === '' || password === '') {
+                event.preventDefault();
+                alert('Mohon isi semua field.');
+            }
+        }
+    
+        window.onload = function() {
+            var signInButton = document.querySelector('.lanjut button');
+            signInButton.addEventListener('click', validateForm);
+        };
+    </script>
+    
+</head>
+
+<body>
+    <header class="header">
+        <div class = "navbar">
+            <div class ="logo">
+                <img src="img/Logo.png" alt="Logo">
+           </div>   
+        </div>
+    </header>
+
+
+    <div class = "main">
+        <div class = "daftarMurid">
+            <h1>Daftar Sebagai Murid</h1>
+            <img src="img/Group_138-removebg-preview.png" alt="Group_138-removebg-preview">
+        </div>
+ 
+        <div class = "signupGuru">
+            <form action="optlogin" method="post">
+                <div class="username">
+                  <div class="user">Username :</div>
+                  <div class="input1"><input type="text" name="username" id="username" required></div>
+                </div>
+              
+                <div class="email">
+                  <div class="mail">Email :</div>
+                  <div class="input2"><input type="text" name="email" id="email" required></div>
+                </div>
+              
+                <div class="password">
+                  <div class="pass">Password :</div>
+                  <div class="input3"><input type="password" name="password" id="password" required></div>
+                </div>
+              
+                <div class="tingkatan">
+                  <p>Masukan tingkat pendidikan :</p>
+                  <div class="tingkat">
+                    <select name="tingkat_pendidikan" id="pelajaran">
+                      <option value="SMA" class="opsi">SMA</option>
+                      <option value="SMP" class="opsi">SMP</option>
+                      <option value="SD" class="opsi">SD</option>
+                    </select>
+                  </div>
+                </div>
+              
+                <div class="asalSekolah">
+                  <div class="asal">Masukan asal sekolah: </div>
+                  <div class="PenaLogo"><img src="IMG/pena.png" alt=""></div>
+                </div>
+              
+                <div class="lanjut">
+                  <button type="submit">Sign-In</button>
+                </div>
+
+            </form>
+    </div>
+
+
+</body>
+</html>

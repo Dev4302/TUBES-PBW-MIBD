@@ -10,7 +10,6 @@ app.get('/' , async(req,res) =>
     res.render('Face1');
 });
 
-
 app.get('/aboutus', async(req,res)=>
 {
     res.render('AboutUs!');
@@ -34,6 +33,14 @@ app.get('/Homepage-student', async(req,res)=>
 app.get('/daftarMurid', async(req,res)=>
 {
     res.render('daftarMurid');
+});
+
+app.post('/daftarMurid',async (req, res)=>{
+
+    const data = req.body.username;
+    console.log(data);
+   
+    res.redirect('/optlogin')
 });
 
 app.get('/LoginMurid', async(req,res)=>
@@ -67,3 +74,4 @@ app.get('/Homepage-teacher', async(req,res)=>
 });
 
 app.use(express.static('public'));
+  
