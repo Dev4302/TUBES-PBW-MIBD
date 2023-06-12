@@ -121,8 +121,8 @@ const createMurid = (namasiswa, email, asalsekolah, pass, idtingkat)=>{
     console.log(pass);
     console.log(idtingkat);
     return new Promise((resolve, reject) => {
-        const query = "INSERT INTO Siswa (idsiswa, namasiswa, email, asalsekolah, pass, idtingkat) VALUES (?,?, ?, ?, ?, ?)";
-        conn.query(query, [0, namasiswa, email, asalsekolah, pass, idtingkat], (err, result) => {
+        const query = "INSERT INTO Siswa (namasiswa, email, asalsekolah, pass, idtingkat) VALUES (?, ?, ?, ?, ?)";
+        conn.query(query, [namasiswa, email, asalsekolah, pass, idtingkat], (err, result) => {
             if (err) {
                 reject(err);
             } else {
@@ -148,12 +148,33 @@ app.get('/LoginMurid', async(req,res)=>
 {
     res.render('LoginMurid');
 });
-app.post('/LoginMurid',async (req, res)=>{
+app.post('/LoginMurid', async (req, res)=>{
 
     const data = req.body.username;
-    console.log(data);
-   
-    res.redirect('/Homepage-student');
+    const hashed_pass = crypto.createHash('sha256').update(password).digest('base64');
+    const selectQuery = `SELECT * FROM siswa WHERE email = ? AND pass = ?`;
+
+    if (username && password) {
+        dbConnect()
+          .then(conn => {
+            conn.query(selectQuery, [username, hashed_pass], (err, results) => {
+              if (err) {
+                console.error(err);
+                res.status(1000).send('Error');
+              }
+    
+              if (results.length > 0) {
+                req.session.username = results[0].name;
+                res.redirect('/Homepage-student');
+                
+              } else {
+                res.render('login', { username: null, password: null});
+              }
+            });
+          })
+      } else {
+        res.render('login', { username: null, password: null});
+      }
 });
 
 app.get('/optlogin', async(req,res)=>
