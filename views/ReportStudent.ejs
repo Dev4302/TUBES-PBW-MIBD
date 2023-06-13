@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report Student</title>
-    <link rel="stylesheet" href="reportStyle.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
     <header class = "hps">
         <div class= "kotak">
@@ -12,7 +12,7 @@
 
             <p><a href="myCourse">My Course</a> </p>
             <p><a href="RegisterCourse">Register Course</a></p>
-            <p><a href="">Report</a></p>
+            <p><a href="" class="report">Report</a></p>
             <p>Nama</p>
 
             <div class="kotak2">
@@ -24,21 +24,22 @@
     </header>
 </head>
 
-<body>
-    <div class = "report">
-        <div class = "kelas">
-            <select name="tingkat" id="kelas">
-                <option value="SD">SD</option>
-                <option value="SMP">SMP</option>
-                <option value="SMA">SMA</option>
-            </select>
-        </div>
-        <h1>Report</h1>
+<body class="rptst">
+    <div class = "reporthed">
+        <h1 class="report-tag">Report</h1>
+    </div>
+
+    <div class = "optting">
+        <select name="tingkat" id="kelas">
+            <option value="SD">SD</option>
+            <option value="SMP">SMP</option>
+            <option value="SMA">SMA</option>
+        </select>
     </div>
 
     <div class = "matpel">
         <div class = "kotakMat">
-        <img src="IMG/Matematika.png" alt="Matematika">
+        <img src="img/Matematika.png" alt="Matematika">
         <div class ="outer1" >
             <div class = "outer2">
                 <p>Jumlah Guru :</p>
@@ -63,7 +64,7 @@
     </div>
 
     <div class = "kotakFisika">
-        <img src="IMG/Fisika.png" alt="Fisika">
+        <img src="img/Fisika.png" alt="Fisika">
         <div class ="outer1" >
             <div class = "outer2">
                 <p>Jumlah Guru :</p>
@@ -84,7 +85,7 @@
     </div>
 
     <div class = "kotakKimia">
-        <img src="IMG/Kimia.png" alt="Kimia">
+        <img src="img/Kimia.png" alt="Kimia">
         <div class = "outer1">
             <div class = "outer2">
                 <p>Jumlah Guru :</p>
