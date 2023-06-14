@@ -228,9 +228,7 @@ app.post('/LoginMurid', async (req, res) => {
     try {
       await cekUser(username, hashed_pass);
 
-      req.session.username = username; // Menyimpan username ke dalam sesi
-      console.log("input user:" + username);
-      console.log("password : " + pass);
+      req.session.username = username;
       res.redirect('/Homepage-student');
     } catch (err) {
       res.render('LoginMurid', { username: null, pass: null });
@@ -260,30 +258,147 @@ app.post('/LoginPengajar', async (req, res)=>{
     res.redirect('/Homepage-teacher');
 });
 
+const createKursus = (idkursus, tanggalPertemuan, idsiswa)=>{
+  console.log(idkursus);
+  console.log(tanggalPertemuan);
+  console.log(idsiswa);
+
+  return new Promise((resolve, reject) => {
+      const query = "INSERT INTO kursus (idkursus, tanggalPertemuan, idsiswa) VALUES (?, ?, ?)";
+      conn.query(query, [idkursus, tanggalPertemuan, idsiswa], (err, result) => {
+          if (err) {
+              reject(err);
+          } else {
+              resolve("masuk kesini : " + result);
+          }
+      });
+  });
+}
+
+async function cariidsiswa(email) {
+  try {
+    const q_idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
+    const results = await conn.query(q_idsiswa, [email]);
+    
+    if (results.length > 0) {
+      return results[0].idsiswa;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
 app.get('/RegisterCourse', authst, async(req,res)=>
 {
     const namasiswa = req.session.username;
     const idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
     conn.query(idsiswa, [namasiswa], (err, results) =>{
-      console.log(results);
+      const idsiswaValue = results[0].idsiswa;
+      console.log(idsiswaValue);
     });
-    //console.log(idsiswa);
-
-    res.render('RegisterCourse');
+      res.render('RegisterCourse'); 
 });
 
-app.get('/myCourse', authst, async(req,res)=>
-{
+app.post('/registermp', authst, async (req, res) => {
+  const data = req.body;
+  const namasiswa = req.session.username;
+  const idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
+
+  conn.query(idsiswa, [namasiswa], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    const idsiswaValue = results[0].idsiswa;
+
+    const qfisika = "INSERT INTO kursus (tanggalpertemuan, idsiswa, namakursus) VALUES (null, ?, 'fisika')";
+    const qkimia = "INSERT INTO kursus (tanggalpertemuan, idsiswa, namakursus) VALUES (null, ?, 'kimia')";
+    const qmatematika = "INSERT INTO kursus (tanggalpertemuan, idsiswa, namakursus) VALUES (null, ?, 'matematika')";
+
+    console.log(data.course);
+
+    if (data.course.includes('fisika')) {
+      conn.query(qfisika, [idsiswaValue], (err, result) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          console.log("Kursus fisika berhasil ditambahkan");
+        }
+      });
+    }
+    
+    if (data.course.includes('kimia')) {
+      conn.query(qkimia, [idsiswaValue], (err, result) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          console.log("Kursus kimia berhasil ditambahkan");
+        }
+      });
+    }
+    
+    if (data.course.includes('matematika')) {
+      conn.query(qmatematika, [idsiswaValue], (err, result) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          console.log("Kursus matematika berhasil ditambahkan");
+        }
+      });
+    }
+
+    res.redirect("/myCourse");
+  });
+});
+
+
+
+app.get('/myCourse', authst, async (req, res) => {
   try {
     const namasiswa = req.session.username;
-    console.log(namasiswa);
+    const qUserId = "SELECT idsiswa FROM siswa WHERE email = ?";
 
-    res.render('myCourse', { namasiswa: namasiswa });
+    conn.query(qUserId, [namasiswa], (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+        return;
+      }
+
+      const idsiswaValue = results[0].idsiswa;
+      console.log(idsiswaValue);
+
+      const qkursus = "SELECT idkursus, tanggalpertemuan, namakursus FROM kursus WHERE idsiswa = ?";
+
+      conn.query(qkursus, [idsiswaValue], (err, results) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal Server Error' });
+          return;
+        }
+
+        const namakursus = results.map((row) => row.namakursus);
+        console.log(namakursus);
+
+        res.render('myCourse', { namasiswa: namasiswa, namakursus: namakursus });
+      });
+    });
   } catch (err) {
     console.error(err);
     res.render('myCourse', { namasiswa: null });
   }
 });
+
+
 
 app.get('/Homepage-teacher',authtc, async(req,res)=> 
 {

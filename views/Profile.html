@@ -5,29 +5,68 @@
     <title>Image Upload</title>
     <link rel="stylesheet" href="../public/css/styles.css">
     <script defer>
-        let pp = document.getElementById("profile-pic");
-        let inp = document.getElementById("input-file");
-
-        inp.onchange = function() {
-            pp.src = URL.createObjectURL(inp.files[0]);
-        };
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const profilePic = document.getElementById("profile-pic");
+                profilePic.src = e.target.result;
+            };
+            
+            reader.readAsDataURL(file);
+        }
     </script>
 </head>
 
 <body class="bodyprofile">
     <div class="boxprof">
         <p>namasiswa</p>
-        <div class="iconprof">
-            <img src="../public/img/defaultprofile.jpg" id="profile-pic">
-        </div>
-
-        <div class="btnprof">
-            <label for="input-file" class="labelprof">Upload Image</label>
-            <input type="file" id="input-file" accept="image/jpg, image/jpg, image/png" class="inprof">
-        </div>
+        <form action="/uploadProfilePic" method="post" enctype="multipart/form-data">
+            <div class="iconprof">
+                <img src="../public/img/defaultprofile.jpg" id="profile-pic">
+            </div>
+    
+            <div class="btnprof">
+                <label for="input-file" class="labelprof">Upload Image</label>
+                <input type="file" id="input-file" accept="image/jpg, image/jpeg, image/png" class="inprof" name="profilePic" onchange="handleFileUpload(event)">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
     </div>
-
-
 </body>
 
 </html>
+
+<!-- const express = require('express');
+const app = express();
+const multer = require('multer');
+const path = require('path');
+
+// Konfigurasi penyimpanan untuk foto
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/img');
+  },
+  filename: function (req, file, cb) {
+    // Buat nama file acak dengan ekstensi yang sama seperti file asli
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const fileExtension = path.extname(file.originalname);
+    cb(null, uniqueSuffix + fileExtension);
+  }
+});
+
+// Inisialisasi middleware multer
+const upload = multer({ storage: storage });
+
+// Menangani permintaan POST untuk mengunggah foto
+app.post('/uploadProfilePic', upload.single('profilePic'), (req, res) => {
+  // Proses foto yang diunggah, misalnya menyimpan informasi ke database, dll.
+  res.redirect('/myCourse'); // Redirect ke halaman lain setelah berhasil mengunggah foto
+});
+
+// Menjalankan server pada port tertentu
+app.listen(3000, () => {
+  console.log('Server berjalan pada port 3000');
+}); -->
+

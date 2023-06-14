@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
     <head>
         <title>
             myCourse
@@ -24,9 +24,31 @@
             </div>
         </header>
 
-        <div class ="main" id="main">
+        <div class ="mainmc">
                 <h1 class="belumdaftar"> No Course Registered</h1>
+                <div class="mainmc2">
+                    <img src="img/Home.png" alt="Home" class="home" onclick="window.location.href = 'Homepage-student';">
+                </div>
         </div>
             
     </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Course</title>
+</head>
+<body>
+  <% if (namakursus && namakursus.length > 0) { %>
+    <h1>My Course:</h1>
+    <ul>
+      <% namakursus.forEach(function(kursus) { %>
+        <li><%= kursus %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <h1>No Course Found</h1>
+  <% } %>
+</body>
 </html>

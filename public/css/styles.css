@@ -306,8 +306,34 @@ html
   flex-direction: column;
   align-items: center;
   font-size: 30px;
+  justify-content: center;
 }
 
+.fisika p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.kimia p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.matematika p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.check{
+  width: 70px;
+  height: 70px;
+}
 .kimia
 {
   border: 2px solid black;
@@ -674,7 +700,7 @@ cursor: pointer;
   transform: translate(-50%, -50%);
   width: 10%;
   height: 10%;
-  background : linear-gradient(to bottom, #FFE8AE, white);
+  background : linear-gradient(to bottom, #FFE8AE, black);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 99;
@@ -828,8 +854,7 @@ cursor: pointer;
 
 
 
-.bodyprofile
-{
+.bodyprofile {
   height: 100%;
   width: 100%;
   display: flex;
@@ -837,8 +862,7 @@ cursor: pointer;
   align-items: center;
 }
 
-.boxprof
-{
+.boxprof {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -849,18 +873,23 @@ cursor: pointer;
   width: 50%;
 }
 
-.iconprof
-{
+.iconprof {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   margin-top: 0%;
   margin-bottom: 5%;
   background-color: black;
+  overflow: hidden; /* Tambahkan properti ini untuk memastikan gambar tidak keluar dari frame */
 }
 
-.labelprof
-{
+.iconprof img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Tambahkan properti ini untuk memastikan gambar tetap dalam frame */
+}
+
+.labelprof {
   padding: 30px;
   border-radius: 10%;
   background-color: cyan;
@@ -869,6 +898,14 @@ cursor: pointer;
   font-weight: bold;
 }
 
-.inprof{
+.inprof {
   display: none;
+}
+
+
+.home{
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
 }
