@@ -262,12 +262,27 @@ app.post('/LoginPengajar', async (req, res)=>{
 
 app.get('/RegisterCourse', authst, async(req,res)=>
 {
+    const namasiswa = req.session.username;
+    const idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
+    conn.query(idsiswa, [namasiswa], (err, results) =>{
+      console.log(results);
+    });
+    //console.log(idsiswa);
+
     res.render('RegisterCourse');
 });
 
 app.get('/myCourse', authst, async(req,res)=>
 {
-    res.render('myCourse');
+  try {
+    const namasiswa = req.session.username;
+    console.log(namasiswa);
+
+    res.render('myCourse', { namasiswa: namasiswa });
+  } catch (err) {
+    console.error(err);
+    res.render('myCourse', { namasiswa: null });
+  }
 });
 
 app.get('/Homepage-teacher',authtc, async(req,res)=> 
@@ -295,7 +310,6 @@ app.post('/ReportStudent', async (req, res) => {
 
   try {
     const namasiswa = await getEmail(username);
-    console.log("masuk sinii...")
     res.render('ReportStudent', { namasiswa });
   } catch (err) {
     console.error(err);
