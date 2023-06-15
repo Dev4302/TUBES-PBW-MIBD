@@ -207,7 +207,9 @@ html
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 3%;
+  align-items: center;
   background: white;
   position: relative;
   font-size: 28px;
@@ -724,7 +726,7 @@ cursor: pointer;
 .matpel{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-top: 0%;
   height: 40%;
@@ -871,6 +873,8 @@ cursor: pointer;
   border-radius: 10%;
   height: 60%;
   width: 50%;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .iconprof {
@@ -896,6 +900,7 @@ cursor: pointer;
   margin-top: 10%;
   font-size: 28px;
   font-weight: bold;
+  margin-bottom: 10%;
 }
 
 .inprof {
@@ -908,4 +913,313 @@ cursor: pointer;
   display: flex;
   justify-content: flex-end;
   align-items: end;
+}
+
+.profileimg
+{
+  height: 90px;
+  width: 90px;
+  background-color: black;
+  border-radius: 50%;
+  margin-right: 5%;
+}
+
+.hpdrop
+{
+  width: 1%;
+  height: 1%;
+}
+
+.btnprof
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subprofim
+{
+  padding: 3%;
+  border-radius: 12%;
+  font-size: 20px;
+}
+
+.matpel{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  height: 40%;
+  border-radius: 2%;
+}
+
+#kelas{
+  font-size: 23px;
+  right: 1%;
+  background-color:rgba(255, 202, 202, 1) ;
+  border-radius: 30px;
+  width: 5%;
+
+}
+
+.kelas{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3%;
+  margin-right: 3%;
+
+}
+
+.kotakMat{
+  border-radius: 20%;
+  width: 96%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  gap: 3%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.kotakFisika{
+  border-radius: 20%;
+  width: 96%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  gap: 3%;
+  text-align: center;
+  margin-top: 3.5%;
+}
+
+.kotakKimia{
+  border-radius: 20%;
+  width: 96%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  gap: 3%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.outer1{
+  background-color : white;
+  height: 55%;
+  width: 50%;
+  margin-top: 3%;
+  border-radius: 40px;
+}
+
+.outer2{
+  background-color: rgba(255, 202, 202, 1);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: 9.7%;
+  margin-left: 9.7%;
+  border-radius: 40px;
+}
+
+.outer3 {
+  background-color: rgba(255, 202, 202, 1);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: 12%;
+  margin-left: 9.7%;
+  border-radius: 40px;
+}
+
+.outer4{
+  background-color : white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  height: 55%;
+  width: 60%;
+  margin-top: 3%;
+  border-radius: 40px;
+}
+
+
+.gambar{
+  margin: 5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+  margin-right: 70%;
+  height: 70px;
+  width: 70px;
+}
+
+.gambar2{
+  margin: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  margin-left: 29%;
+}
+
+.peldlmkiri
+{
+  display: flex;
+  flex-direction: column;
+  margin: 4%;
+  height: 100px;
+
+}
+
+.peldlm{
+  background: white;
+  margin: 3%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction:row;
+  width: 80%;
+  height: 80%;
+  gap: 5%;
+  border-radius: 40px;
+}
+
+.peldlm2{
+  margin: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  width: 60%;
+  height: 90%;
+  gap: 5%;
+  border-radius: 40px;
+}
+
+.nomor{
+  background-color: rgba(255, 202, 202, 1);
+  border-radius: 100%;
+  width: 15%;
+  margin: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.kata{
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.kata2{
+  text-align: end;
+  font-size: 20px;
+}
+
+.home{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.luar{
+  display: flex;
+  flex-direction: column;
+  background-color : white;
+  height: 55%;
+  width: 50%;
+  margin-top: 3%;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dalam1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dalam2{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bagan1{
+  background-color:rgba(255, 202, 202, 1);
+  display: flex;
+  justify-content: center;
+}
+
+.bagan2{
+  background-color:rgba(255, 202, 202, 1);
+  display: flex;
+}
+
+.bagan3{
+  background-color:rgba(255, 202, 202, 1);
+  display: flex;
+}
+
+.bagan4{
+  background-color:rgba(255, 202, 202, 1);
+  display: flex;
+}
+
+.judul{
+  text-align: center;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.loweropt
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20%;
+}
+
+.keluaropt
+{
+  padding: 5%;
+  background-color: #eae8ea;
+  color: #eae8ea;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
 }

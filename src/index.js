@@ -432,5 +432,19 @@ app.post('/ReportStudent', async (req, res) => {
   }
 });
 
+app.get('/Profile',authst, async(req,res)=> 
+{
+  try {
+    const namasiswa = req.session.username; // Menggunakan req.session.username untuk mendapatkan username dari sesi
+    console.log(namasiswa);
+
+    res.render('Profile', { namasiswa: namasiswa }); // Menggunakan namasiswa yang sudah didefinisikan
+  } catch (err) {
+    console.error(err);
+    res.render('Profile', { namasiswa: null });
+  }
+});
+
+
 app.use(express.static('public'));
   

@@ -3,7 +3,7 @@
 
 <head>
     <title>Image Upload</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script defer>
         function handleFileUpload(event) {
             const file = event.target.files[0];
@@ -21,7 +21,7 @@
 
 <body class="bodyprofile">
     <div class="boxprof">
-        <p>namasiswa</p>
+        <p><%=namasiswa%></p>
         <form action="/uploadProfilePic" method="post" enctype="multipart/form-data">
             <div class="iconprof">
                 <img src="../public/img/defaultprofile.jpg" id="profile-pic">
@@ -30,7 +30,17 @@
             <div class="btnprof">
                 <label for="input-file" class="labelprof">Upload Image</label>
                 <input type="file" id="input-file" accept="image/jpg, image/jpeg, image/png" class="inprof" name="profilePic" onchange="handleFileUpload(event)">
-                <input type="submit" value="Submit">
+                
+                <div class="loweropt">
+                  <input type="submit" value="Submit" class="subprofim">
+                  
+                  <div class="keluaropt">
+                    <button type="button" onclick="window.location.href='Homepage-student';" class="subprofim">Back</button>
+                  <button class="subprofim" type="button" onclick="window.location.href = 'aboutus';">Log-out</button>
+                  </div>
+                  
+                </div>
+                
             </div>
         </form>
     </div>
