@@ -24,7 +24,7 @@
         <p><%=namasiswa%></p>
         <form action="/uploadProfilePic" method="post" enctype="multipart/form-data">
             <div class="iconprof">
-                <img src="../public/img/defaultprofile.jpg" id="profile-pic">
+                <img src="<%= (typeof pathfoto === 'string') ? pathfoto : `data:image/jpeg;base64,${pathfoto.toString('base64')}` %>" alt="" class="profileimg" id="profile-pic">
             </div>
     
             <div class="btnprof">

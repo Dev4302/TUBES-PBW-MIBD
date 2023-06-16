@@ -1,10 +1,12 @@
-const mysql = require ('mysql');
+const mysql = require('mysql');
 const express = require('express');
 const app = express();
 const crypto = require('crypto');
 const session = require('express-session');
 const path = require('path');
 const publicPath = path.resolve('public');
+const multer = require('multer');
+const upload = multer();
 app.use(express.static(publicPath));
 
 
@@ -12,203 +14,220 @@ app.use(express.static(publicPath));
 // app.use(express.static('public'));
 // app.use(express.static('CSS'));
 // app.use(express.static('Script'));
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(
-    session({
-      secret: 'your-secret-key',
-      resave: false,
-      saveUninitialized: true
-    })
-  );
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
-const authst = (req, res, next)=>
-{
+const authst = (req, res, next) => {
   if (req.session.username) {
     next();
   }
-  else
-  {
+  else {
     res.redirect('/LoginMurid');
   }
 }
 
-const authtc = (req, res, next)=>
-{
+const authtc = (req, res, next) => {
   if (req.session.username) {
     next();
   }
-  else
-  {
+  else {
     res.redirect('/LoginPengajar');
   }
 }
 
 const conn = mysql.createConnection({
-    user: 'root',
-    password: '',
-    database: 'tubeskursus',
-    host: 'localhost'
+  user: 'root',
+  password: '',
+  database: 'tubeskursus',
+  host: 'localhost'
 });
 
 const getUsers = () => {
-    return new Promise((resolve, reject) => {
-        conn.query('SELECT namasiswa, email FROM siswa', (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
+  return new Promise((resolve, reject) => {
+    conn.query('SELECT namasiswa, email FROM siswa', (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
     });
+  });
 };
 
 app.get('/tabel', async (req, res) => {
-    try {
-        const result = await getUsers();
-        console.log(result);
+  try {
+    const result = await getUsers();
+    console.log(result);
 
-        // Render the results in an HTML table
-        const tableRows = result.map(row => `<tr><td>${row.namasiswa}</td><td>${row.email}</td></tr>`);
-        const table = `<table>${tableRows.join('')}</table>`;
+    // Render the results in an HTML table
+    const tableRows = result.map(row => `<tr><td>${row.namasiswa}</td><td>${row.email}</td></tr>`);
+    const table = `<table>${tableRows.join('')}</table>`;
 
-        res.send(table);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error retrieving data from the database.');
-    }
+    res.send(table);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving data from the database.');
+  }
 });
 
 app.set('view engine', 'ejs');
- 
+
 const port = 8080;
 
 app.listen(port);
-app.get('/' , async(req,res) =>
-{
-    res.render('Face1');
+app.get('/', async (req, res) => {
+  res.render('Face1');
 });
 
 
-app.get('/aboutus', async(req,res)=>
-{
-    res.render('AboutUs!');
+app.get('/aboutus', async (req, res) => {
+  res.render('AboutUs!');
 });
 
 
-
-app.get('/daftarPengajar', async(req,res)=>
-{
-    res.render('daftarPengajar');
-});
-
-app.post('/daftarPengajar',async (req, res)=>{
-
-    const data = req.body;
-    console.log(data.username);
-    console.log(data.email);
-    console.log(data.password);
-    console.log(data.jenis);
-    console.log(data.tarif);
-   
-    res.redirect('/jadwalPengajar');
-});
-
-
-app.get('/jadwalPengajar', async(req,res)=>
-{
-    res.render('jadwalPengajar');
-});
-app.post('/jadwalPengajar',async (req, res)=>{
-
-    const data = req.body.username;
-    console.log(data);
-   
-    res.redirect('/optlogin');
-});
-
-  
-app.get('/Homepage-student' , authst , async (req, res) => {
-    try {
-      const namasiswa = req.session.username; // Menggunakan req.session.username untuk mendapatkan username dari sesi
-      console.log(namasiswa);
-  
-      res.render('Homepage-student', { namasiswa: namasiswa }); // Menggunakan namasiswa yang sudah didefinisikan
-    } catch (err) {
-      console.error(err);
-      res.render('Homepage-student', { namasiswa: null });
-    }
+const createGuru = (nama, email, password, tarif) => {
+  return new Promise((resolve, reject) => {
+    const query = "INSERT INTO Guru (nama, email, password, tarif) VALUES (?, ?, ?, ?)";
+    conn.query(query, [nama, email, password, tarif], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
   });
-  
-  
-  app.post('/Homepage-student', async (req, res) => {
-    const username = req.body.username;
-    req.session.username = username; // Menyimpan username ke dalam sesi
-    console.log(username);
-  
-    try {
-      const namasiswa = await getEmail(username);
-      console.log("masuk sinii...")
-      res.render('Homepage-student', { namasiswa });
-    } catch (err) {
-      console.error(err);
-      res.render('Homepage-student', { namasiswa: null });
-    }
-  });
+};
 
-app.get('/daftarMurid', async(req,res)=>
-{
-    res.render('daftarMurid');
+// Menangani rute GET untuk halaman pendaftaran pengajar
+app.get('/daftarPengajar', async (req, res) => {
+  res.render('daftarPengajar');
 });
-const createMurid = (namasiswa, email, asalsekolah, pass, idtingkat)=>{
+
+// Menangani rute POST untuk menyimpan data pengajar ke database
+app.post('/daftarPengajar', async (req, res) => {
+  const { nama, email, password, tarif } = req.body;
+
+  try {
+    await createGuru(nama, email, password, tarif); // Memanggil fungsi createGuru untuk menyimpan data pengajar ke database
+
+    res.redirect('/jadwalPengajar'); // Mengalihkan pengguna ke halaman jadwal pengajar setelah pendaftaran berhasil
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
+app.get('/jadwalPengajar', async (req, res) => {
+  res.render('jadwalPengajar');
+});
+app.post('/jadwalPengajar', async (req, res) => {
+
+  const data = req.body.username;
+  console.log(data);
+
+  res.redirect('/optlogin');
+});
+
+
+app.get('/Homepage-student', authst, async (req, res) => {
+  try {
+    const namasiswa = req.session.username;
     console.log(namasiswa);
-    console.log(email);
-    console.log(asalsekolah);
-    console.log(pass);
-    console.log(idtingkat);
-    return new Promise((resolve, reject) => {
-        const query = "INSERT INTO Siswa (namasiswa, email, asalsekolah, pass, idtingkat) VALUES (?, ?, ?, ?, ?)";
-        conn.query(query, [namasiswa, email, asalsekolah, crypto.createHash('sha256').update(pass).digest('base64'), idtingkat], (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
+    const pathfoto = "img/defaultprofile.jpg";
+    const foto = "SELECT foto FROM siswa WHERE email = ?";
+    conn.query(foto, [namasiswa], (err, results) => {
+      if (results === null || results.length === 0) {
+        res.render('Homepage-student', { namasiswa: namasiswa, pathfoto });
+      } else {
+        const imageBlob = results[0].foto;
+        if (imageBlob !== null) {
+          res.render('Homepage-student', { namasiswa: namasiswa, pathfoto: imageBlob });
+        } else {
+          res.render('Homepage-student', { namasiswa: namasiswa, pathfoto });
+        }
+      }
     });
+  } catch (err) {
+    console.error(err);
+    res.render('Homepage-student', { namasiswa: null });
+  }
+});
+
+
+
+app.post('/Homepage-student', async (req, res) => {
+  const username = req.body.username;
+  req.session.username = username; // Menyimpan username ke dalam sesi
+  console.log(username);
+
+  try {
+    const namasiswa = await getEmail(username);
+    console.log("masuk sinii...")
+    res.render('Homepage-student', { namasiswa });
+  } catch (err) {
+    console.error(err);
+    res.render('Homepage-student', { namasiswa: null });
+  }
+});
+
+app.get('/daftarMurid', async (req, res) => {
+  res.render('daftarMurid');
+});
+const createMurid = (namasiswa, email, asalsekolah, pass, idtingkat) => {
+  console.log(namasiswa);
+  console.log(email);
+  console.log(asalsekolah);
+  console.log(pass);
+  console.log(idtingkat);
+  return new Promise((resolve, reject) => {
+    const query = "INSERT INTO Siswa (namasiswa, email, asalsekolah, pass, idtingkat) VALUES (?, ?, ?, ?, ?)";
+    conn.query(query, [namasiswa, email, asalsekolah, crypto.createHash('sha256').update(pass).digest('base64'), idtingkat], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
 }
-app.post('/daftarMurid',async (req, res)=>{
-    const { username, email, password, jenis, sekolah } = req.body;
+app.post('/daftarMurid', async (req, res) => {
+  const { username, email, password, jenis, sekolah } = req.body;
 
-    try {
+  try {
 
-        await createMurid(username, email, sekolah, password, jenis);
-        
-        res.redirect('/optlogin');
-    } catch (err) {
-        console.error(err);
-    }
+    await createMurid(username, email, sekolah, password, jenis);
+
+    res.redirect('/optlogin');
+  } catch (err) {
+    console.error(err);
+  }
 });
 
-app.get('/LoginMurid', async(req,res)=>
-{
-    res.render('LoginMurid');
+app.get('/LoginMurid', async (req, res) => {
+  res.render('LoginMurid');
 });
 
- const cekUser = (username, hashed_pass)=>{
-    return new Promise((resolve, reject) => {
-        const selectQuery = "SELECT email, pass  FROM siswa WHERE email = ? AND pass = ?";
-        conn.query(selectQuery, [username, hashed_pass], (err, results) => {
-              console.log(username);
-              console.log(hashed_pass);
-              console.log(results);
-              if (results.length > 0) {
-                resolve(username);
-              } else {
-                console.log("error");
-                reject(err);
-                }
-            });
+const cekUser = (username, hashed_pass) => {
+  return new Promise((resolve, reject) => {
+    const selectQuery = "SELECT email, pass  FROM siswa WHERE email = ? AND pass = ?";
+    conn.query(selectQuery, [username, hashed_pass], (err, results) => {
+      console.log(username);
+      console.log(hashed_pass);
+      console.log(results);
+      if (results.length > 0) {
+        resolve(username);
+      } else {
+        console.log("error");
+        reject(err);
+      }
     });
+  });
 }
 
 app.post('/LoginMurid', async (req, res) => {
@@ -241,37 +260,35 @@ app.post('/LoginMurid', async (req, res) => {
 
 
 
-app.get('/optlogin', async(req,res)=>
-{
-    res.render('optlogin');
+app.get('/optlogin', async (req, res) => {
+  res.render('optlogin');
 });
 
-app.get('/LoginPengajar', async(req,res)=>
-{
-    res.render('LoginPengajar');
+app.get('/LoginPengajar', async (req, res) => {
+  res.render('LoginPengajar');
 });
-app.post('/LoginPengajar', async (req, res)=>{
+app.post('/LoginPengajar', async (req, res) => {
 
-    const data = req.body.username;
-    console.log(data);
-   
-    res.redirect('/Homepage-teacher');
+  const data = req.body.username;
+  console.log(data);
+
+  res.redirect('/Homepage-teacher');
 });
 
-const createKursus = (idkursus, tanggalPertemuan, idsiswa)=>{
+const createKursus = (idkursus, tanggalPertemuan, idsiswa) => {
   console.log(idkursus);
   console.log(tanggalPertemuan);
   console.log(idsiswa);
 
   return new Promise((resolve, reject) => {
-      const query = "INSERT INTO kursus (idkursus, tanggalPertemuan, idsiswa) VALUES (?, ?, ?)";
-      conn.query(query, [idkursus, tanggalPertemuan, idsiswa], (err, result) => {
-          if (err) {
-              reject(err);
-          } else {
-              resolve("masuk kesini : " + result);
-          }
-      });
+    const query = "INSERT INTO kursus (idkursus, tanggalPertemuan, idsiswa) VALUES (?, ?, ?)";
+    conn.query(query, [idkursus, tanggalPertemuan, idsiswa], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve("masuk kesini : " + result);
+      }
+    });
   });
 }
 
@@ -279,7 +296,7 @@ async function cariidsiswa(email) {
   try {
     const q_idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
     const results = await conn.query(q_idsiswa, [email]);
-    
+
     if (results.length > 0) {
       return results[0].idsiswa;
     } else {
@@ -292,15 +309,14 @@ async function cariidsiswa(email) {
 }
 
 
-app.get('/RegisterCourse', authst, async(req,res)=>
-{
-    const namasiswa = req.session.username;
-    const idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
-    conn.query(idsiswa, [namasiswa], (err, results) =>{
-      const idsiswaValue = results[0].idsiswa;
-      console.log(idsiswaValue);
-    });
-      res.render('RegisterCourse'); 
+app.get('/RegisterCourse', authst, async (req, res) => {
+  const namasiswa = req.session.username;
+  const idsiswa = "SELECT idsiswa FROM siswa WHERE email = ?";
+  conn.query(idsiswa, [namasiswa], (err, results) => {
+    const idsiswaValue = results[0].idsiswa;
+    console.log(idsiswaValue);
+  });
+  res.render('RegisterCourse');
 });
 
 app.post('/registermp', authst, async (req, res) => {
@@ -333,7 +349,7 @@ app.post('/registermp', authst, async (req, res) => {
         }
       });
     }
-    
+
     if (data.course.includes('kimia')) {
       conn.query(qkimia, [idsiswaValue], (err, result) => {
         if (err) {
@@ -344,7 +360,7 @@ app.post('/registermp', authst, async (req, res) => {
         }
       });
     }
-    
+
     if (data.course.includes('matematika')) {
       conn.query(qmatematika, [idsiswaValue], (err, result) => {
         if (err) {
@@ -387,26 +403,44 @@ app.get('/myCourse', authst, async (req, res) => {
         }
 
         const namakursus = results.map((row) => row.namakursus);
+        let disfisika = "none";
+        let diskimia = "none";
+        let dismat = "none";
+        let nocoursefound = "none";
+
+        if (namakursus.includes("fisika")) {
+          disfisika = "block";
+        }
+        if (namakursus.includes("kimia")) {
+          diskimia = "block";
+        }
+        if (namakursus.includes("matematika")) {
+          dismat = "block";
+        }
+        if (disfisika && diskimia && dismat === "none") {
+          nocoursefound = "block";
+        }
+
+
         console.log(namakursus);
 
-        res.render('myCourse', { namasiswa: namasiswa, namakursus: namakursus });
+        res.render('myCourse', { namasiswa: namasiswa, namakursus: namakursus, disfisika, diskimia, dismat, nocoursefound });
       });
     });
   } catch (err) {
     console.error(err);
     res.render('myCourse', { namasiswa: null });
   }
+
 });
 
 
 
-app.get('/Homepage-teacher',authtc, async(req,res)=> 
-{
-    res.render('Homepage-teacher');
+app.get('/Homepage-teacher', async (req, res) => {
+  res.render('Homepage-teacher');
 });
 
-app.get('/ReportStudent', authst, async(req, res)=>
-{
+app.get('/ReportStudent', authst, async (req, res) => {
   try {
     const namasiswa = req.session.username; // Menggunakan req.session.username untuk mendapatkan username dari sesi
     console.log(namasiswa);
@@ -432,19 +466,49 @@ app.post('/ReportStudent', async (req, res) => {
   }
 });
 
-app.get('/Profile',authst, async(req,res)=> 
-{
+app.get('/Profile', authst, async (req, res) => {
   try {
-    const namasiswa = req.session.username; // Menggunakan req.session.username untuk mendapatkan username dari sesi
+    const namasiswa = req.session.username;
     console.log(namasiswa);
-
-    res.render('Profile', { namasiswa: namasiswa }); // Menggunakan namasiswa yang sudah didefinisikan
+    const pathfoto = "img/defaultprofile.jpg";
+    const foto = "SELECT foto FROM siswa WHERE email = ?";
+    conn.query(foto, [namasiswa], (err, results) => {
+      if (results === null || results.length === 0) {
+        res.render('Profile', { namasiswa: namasiswa, pathfoto });
+      } else {
+        const imageBlob = results[0].foto;
+        if (imageBlob !== null) {
+          res.render('Profile', { namasiswa: namasiswa, pathfoto: imageBlob });
+        } else {
+          res.render('Profile', { namasiswa: namasiswa, pathfoto });
+        }
+      }
+    });
   } catch (err) {
     console.error(err);
     res.render('Profile', { namasiswa: null });
   }
 });
+app.post('/uploadProfilePic', authst, upload.single('profilePic'), (req, res) => {
+  const namasiswa = req.session.username;
+  const profilePicBlob = req.file.buffer;
+
+  const sql = "UPDATE siswa SET foto = ? WHERE email = ?";
+  conn.query(sql, [profilePicBlob, namasiswa], (error, results) => {
+    if (error) {
+      // Handle error
+      console.error(error);
+    } else {
+      // Berhasil melakukan update
+      res.redirect("/Homepage-student");
+    }
+   
+  })
+});
+
+app.get('/MateriTeacher', (req,res)=>{
+  res.render('MateriTeacher');
+})
 
 
-app.use(express.static('public'));
-  
+  app.use(express.static('public'));

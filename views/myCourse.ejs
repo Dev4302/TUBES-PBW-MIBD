@@ -1,39 +1,10 @@
-<!-- <html>
-    <head>
-        <title>
-            myCourse
-        </title>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    </head>
-
-    <body>
-         <header class="hps">
-            <div class = "kotak">
-                <img src="img/LogoR.png" alt="LogoR">
-                <p> <a href="">My Course</a> </p>
-                <p><a href="RegisterCourse">Register Course</a></p>
-                
-              <p><%=namasiswa%><p>
-              </div>
-            </header>
-
-        <div class ="mainmc">
-                <h1 class="belumdaftar"> No Course Registered</h1>
-                <div class="mainmc2">
-                    <img src="img/Home.png" alt="Home" class="home" onclick="window.location.href = 'Homepage-student';">
-                </div>
-        </div>
-            
-    </body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>My Course</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script defer>
+  <!-- <script defer>
     // Select the elements
     var fisikaElement = document.querySelector('.kotakFisika');
     var kimiaElement = document.querySelector('.kotakKimia');
@@ -50,10 +21,12 @@
 
     if (namakursus.includes('matematika')) {
       matematikaElement.style.display = 'block';
-    }
+    } 
+  </script>-->
 
 
-  </script>
+
+
 
 </head>
 
@@ -67,106 +40,100 @@
 
       <p>
         <%=namasiswa%>
-          <p>
+      </p>
+
+      
     </div>
   </header>
 
-  <% if (namakursus && namakursus.length> 0) { %>
-    <h1>My Course:</h1>
-    <ul>
-      <% namakursus.forEach(function(kursus) { %>
-        <li>
-          <%= kursus %>
-        </li>
-        <% }); %>
-    </ul>
-    <% } else { %>
-      <h1>No Course Found</h1>
-      <% } %>
-
-
-        <div class="matpel">
-          <div class="kotakMat">
-            <img src="IMG/Matematika.png" alt="Matematika">
-            <div class="outer4">
-              <div class="outer3">
-                <div class="peldlmkiri">
-                  <img src="IMG/LisaGuru.png" alt="LisaGuru" class="gambar">
-                  <img src="IMG/group.png" alt="Group" class="gambar2">
-                </div>
-
-                <div class="peldlm2">
-                  <div class="kata2">Lisa Saraswati</div>
-                  <button>Lihat Jadwal</button>
-                </div>
-              </div>
-
-              <div class="outer3">
-                <div class="peldlmkiri">
-                  <img src="IMG/KukuhGuru.png" alt="KukuhGuru" class="gambar">
-                  <img src="IMG/group.png" alt="Group" class="gambar2">
-                </div>
-
-
-                <div class="peldlm2">
-                  <div class="kata2">Kukuh Subianto</div>
-                  <button>Lihat Jadwal</button>
-                </div>
-              </div>
-            </div>
+  <div class="matpel">
+    <div class="kotakMat <%=dismat%>">
+      <img src="IMG/Matematika.png" alt="Matematika">
+      
+      <div class="outer4">
+        <div class="outer3">
+          <div class="peldlmkiri">
+            <img src="IMG/LisaGuru.png" alt="LisaGuru" class="gambar">
+            <img src="IMG/group.png" alt="Group" class="gambar2">
           </div>
 
-          <div class="kotakFisika">
-            <img src="IMG/Fisika.png" alt="Fisika">
-            <div class="outer4">
-              <div class="outer3">
-                <div class="peldlmkiri">
-                  <img src="IMG/Jericho.png" alt="JerichoGuru" class="gambar">
-                  <img src="IMG/group.png" alt="Group" class="gambar2">
-
-                </div>
-
-                <div class="peldlm2">
-                  <div class="kata2">Jericho Chandra</div>
-                  <button>Lihat Jadwal</button>
-                </div>
-              </div>
-
-              <div class="outer3">
-                <div class="peldlmkiri">
-                  <img src="IMG/SuciGuru.png" alt="SuciPrasetyo" class="gambar">
-                  <img src="IMG/group.png" alt="Group" class="gambar2">
-                </div>
-
-
-                <div class="peldlm2">
-                  <div class="kata2">Suci Prasetyo</div>
-                  <button>Lihat Jadwal</button>
-                </div>
-              </div>
-
-            </div>
+          <div class="peldlm2">
+            <div class="kata2">Lisa Saraswati</div>
+            <button>Lihat Jadwal</button>
           </div>
-
-          <div class="kotakKimia">
-            <img src="IMG/Kimia.png" alt="Kimia">
-            <div class="outer4">
-              <div class="outer3">
-                <div class="peldlmkiri">
-                  <img src="IMG/LinaGuru.png" alt="LinaGuru" class="gambar">
-                  <img src="IMG/group.png" alt="Group" class="gambar2">
-                </div>
-
-                <div class="peldlm2">
-                  <div class="kata2">Lina Melinda</div>
-                  <button>Lihat Jadwal</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
         </div>
+
+        <div class="outer3">
+          <div class="peldlmkiri">
+            <img src="IMG/KukuhGuru.png" alt="KukuhGuru" class="gambar">
+            <img src="IMG/group.png" alt="Group" class="gambar2">
+          </div>
+
+
+          <div class="peldlm2">
+            <div class="kata2">Kukuh Subianto</div>
+            <button>Lihat Jadwal</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="kotakFisika <%=disfisika%>">
+      <img src="IMG/Fisika.png" alt="Fisika">
+      <div class="outer4">
+        <div class="outer3">
+          <div class="peldlmkiri">
+            <img src="IMG/Jericho.png" alt="JerichoGuru" class="gambar">
+            <img src="IMG/group.png" alt="Group" class="gambar2">
+
+          </div>
+
+          <div class="peldlm2">
+            <div class="kata2">Jericho Chandra</div>
+            <button>Lihat Jadwal</button>
+          </div>
+        </div>
+
+        <div class="outer3">
+          <div class="peldlmkiri">
+            <img src="IMG/SuciGuru.png" alt="SuciPrasetyo" class="gambar">
+            <img src="IMG/group.png" alt="Group" class="gambar2">
+          </div>
+
+
+          <div class="peldlm2">
+            <div class="kata2">Suci Prasetyo</div>
+            <button>Lihat Jadwal</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="kotakKimia <%=diskimia%>">
+      <img src="IMG/Kimia.png" alt="Kimia">
+      <div class="outer4">
+        <div class="outer3">
+          <div class="peldlmkiri">
+            <img src="IMG/LinaGuru.png" alt="LinaGuru" class="gambar">
+            <img src="IMG/group.png" alt="Group" class="gambar2">
+          </div>
+
+          <div class="peldlm2">
+            <div class="kata2">Lina Melinda</div>
+            <button>Lihat Jadwal</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="<%=nocoursefound%>">
+      <h1>No Course Found</h1>
+    </div>
+
+  </div>
 </body>
 
 </html>

@@ -1,66 +1,85 @@
 <html>
-    <head>
-        <title>
-            HomePage-Student
-        </title>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
-    </head>
+<head>
+    <title>
+        HomePage-Student
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "imageData.json", // Path to the JSON file containing image data
+                dataType: "json",
+                success: function (data) {
+                    // Replace the image sources with the fetched data
+                    $(".profileimg").attr("src", data.profileImage);
+                },
+                error: function () {
+                    console.log("Failed to load image data.");
+                }
+            });
+        });
+    </script>
+</head>
 
-    
-    <header class="homepic">
-        <img src="img/R.png" alt="R" class="r-img">
-        <img src="img/HOMEBG.jpg" alt="HOMEBG" class="homebg-img">
-      </header>
-      
 
-        <body class="hps">
-            <div class = "kotak">
-                <img src="img/LogoR.png" alt="LogoR">
-                <p><a href="myCourse">My Course</a> </p>
-                <p><a href="RegisterCourse">Register Course</a></p>
-                
-                <p> <a href="ReportStudent">Report</a></p>
+<header class="homepic">
+    <img src="img/R.png" alt="R" class="r-img">
+    <img src="img/HOMEBG.jpg" alt="HOMEBG" class="homebg-img">
+</header>
 
-                <p class="nama">
-                    <%= namasiswa %>
-                </p>
 
-                        <img src="" alt="" class="profileimg" onclick="window.location.href = 'Profile';">
-                </div>
-                
-            </div>
-            <div class="opt">
-                <div class="box">
-                    <img src="img/hpicon.png" alt="hpicon" class="ikon">
-                    Pilih lebih dari 1 Course
-                    <p>Anda boleh memilih lebih dari 1 materi dan 1 pertemuan secara khusus</p>
-                </div>
+<body class="hps">
+    <div class="kotak">
+        <img src="img/LogoR.png" alt="LogoR">
+        <p><a href="myCourse">My Course</a> </p>
+        <p><a href="RegisterCourse">Register Course</a></p>
 
-                <div class="box">
-                    <img src="img/hpicon (2).png" alt="" class="ikon">
-                    Pilih Jadwalmu
-                    <p>
-                        Buatlah Jadwal kursus yang sesuai dengan waktu anda
-                    </p>
-                </div>
+        <p> <a href="ReportStudent">Report</a></p>
 
-                <div class="box">
-                    <img src="img/hpicon3.png" alt="hpicon3" class="ikon">
-                    Semua Online
-                    <p>Anda dapat menentukan platform media online yang akan anda gunakan</p>
-                </div>
+        <p class="nama">
+            <%= namasiswa %>
+        </p>
 
-                <div class="box">
-                    <img src="img/hpicon4.png" alt="hpicon4" class="ikon">
-                    Berakhir Kapan Saja
-                    <p>Anda dapat menentukan berapa tarif mengajar yang sesuai dengan anda </p>
-                </div>
-            </div>
+        <img src="<%= (typeof pathfoto === 'string') ? pathfoto : `data:image/jpeg;base64,${pathfoto.toString('base64')}` %>"
+            alt="" class="profileimg" onclick="window.location.href = 'Profile';">
 
-            <div class="popup">
-                <button class="ovoutbtn" type="button" onclick="window.location.href = 'aboutus';">Keluar Kursus</button>
-                <button class="ovoutbtn" type="button" onclick="window.location.href = 'aboutus';">Log-out</button>
-            </div>
-        </body>
+    </div>
+
+    </div>
+    <div class="opt">
+        <div class="box">
+            <img src="img/hpicon.png" alt="hpicon" class="ikon">
+            Pilih lebih dari 1 Course
+            <p>Anda boleh memilih lebih dari 1 materi dan 1 pertemuan secara khusus</p>
+        </div>
+
+        <div class="box">
+            <img src="img/hpicon (2).png" alt="" class="ikon">
+            Pilih Jadwalmu
+            <p>
+                Buatlah Jadwal kursus yang sesuai dengan waktu anda
+            </p>
+        </div>
+
+        <div class="box">
+            <img src="img/hpicon3.png" alt="hpicon3" class="ikon">
+            Semua Online
+            <p>Anda dapat menentukan platform media online yang akan anda gunakan</p>
+        </div>
+
+        <div class="box">
+            <img src="img/hpicon4.png" alt="hpicon4" class="ikon">
+            Berakhir Kapan Saja
+            <p>Anda dapat menentukan berapa tarif mengajar yang sesuai dengan anda </p>
+        </div>
+    </div>
+
+    <div class="popup">
+        <button class="ovoutbtn" type="button" onclick="window.location.href = 'aboutus';">Keluar Kursus</button>
+        <button class="ovoutbtn" type="button" onclick="window.location.href = 'aboutus';">Log-out</button>
+    </div>
+</body>
+
 </html>
